@@ -51,7 +51,9 @@ describe('Inn Form', () => {
     await page.waitFor('.popover');
   });
   afterAll(async () => { // перенёс со строки 36
-    await browser.close();
+    if (browser) {
+      await browser.close();
+    }
     server.kill();
   });
 });

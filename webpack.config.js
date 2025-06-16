@@ -4,7 +4,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   devServer: {
+    compress: true,
     port: 9000,
+    hot: false,        // отключаем HMR
+    liveReload: false, // отключаем live reload
+    open: false,       // не открываем браузер
+    watchFiles: ['src/'],
   },
   devtool: 'source-map',
   output: {

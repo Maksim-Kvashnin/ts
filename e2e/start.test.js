@@ -37,7 +37,9 @@ describe('Page start', () => {
   });
 
   afterAll(async () => {
-    await browser.close();
+    if (browser) {
+      await browser.close();
+    }
     server.kill();
   });
 });
