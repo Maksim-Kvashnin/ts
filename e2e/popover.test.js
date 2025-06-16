@@ -1,31 +1,15 @@
 import puppeteer from 'puppeteer';
 
-const childProcess = require('child_process');
-
-jest.setTimeout(30000);
-
 describe('Inn Form', () => {
   let browser;
   let page;
-  let server = null;
 
-  beforeAll(async () => {
-    server = await childProcess.fork(`${__dirname}/e2e.server.js`);
-    await new Promise((resolve, reject) => {
-      server.on('error', () => {
-        reject();
-      });
-      server.on('message', (message) => {
-        if (message === 'ok') {
-          resolve();
-        }
-      });
-    });
-
+  beforeEach(async () => {
     browser = await puppeteer.launch({
       // headless: false,
       // slowMo: 100,
       // devtools: true,
+      // open: false,
     });
 
     page = await browser.newPage();
@@ -50,10 +34,7 @@ describe('Inn Form', () => {
 
     await page.waitFor('.popover');
   });
-  afterAll(async () => { // перенёс со строки 36
-    if (browser) {
-      await browser.close();
-    }
-    server.kill();
+  afterEach(async () => { // перенёс со строки 36
+    await browser.close();
   });
 });
