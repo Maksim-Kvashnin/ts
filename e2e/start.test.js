@@ -1,14 +1,30 @@
 import puppeteer from 'puppeteer';
 
+const childProcess = require('child_process');
+
+jest.setTimeout(30000);
+
 describe('Page start', () => {
   let browser;
   let page;
+  let server = null;
 
   beforeEach(async () => {
+    server = await childProcess.fork(`${__dirname}/e2e.server.js`);
+    await new Promise((resolve, reject) => {
+      server.on('error', () => {
+        reject();
+      });
+      server.on('message', (message) => {
+        if (message === 'ok') {
+          resolve();
+        }
+      });
+    });
     browser = await puppeteer.launch({
-      headless: false,
-      slowMo: 100,
-      devtools: true,
+      // headless: false,
+      // slowMo: 100,
+      // devtools: true,
     });
 
     page = await browser.newPage();
@@ -22,5 +38,6 @@ describe('Page start', () => {
 
   afterEach(async () => {
     await browser.close();
+    server.kill();
   });
 });
