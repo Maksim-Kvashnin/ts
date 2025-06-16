@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
     "test": "jest --testPathPattern=./src/",
     "coverage": "jest --testPathPattern=./src/ --coverage",
     "e2e": "jest --testPathPattern=./e2e/ --runInBand",
@@ -38,11 +38,11 @@
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^0.9.0",
     "puppeteer": "^10.0.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "core-js": "^3.6.4"
+    "core-js": "^3.6.4",
+    "webpack": "^4.42.1",
+    "webpack-dev-server": "^3.10.3"
   }
 }

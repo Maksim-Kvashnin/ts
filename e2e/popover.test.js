@@ -32,9 +32,8 @@ describe('Inn Form', () => {
     await btn.click();
 
     await page.waitFor('.popover');
-
   });
-  afterEach(async () => { // перенёс со строки 36, т.к. это закрытие окна браузера после каждого теста
+  afterEach(async () => { // перенёс со строки 36
     await browser.close();
   });
 });
