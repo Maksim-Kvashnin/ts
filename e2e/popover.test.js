@@ -9,7 +9,7 @@ describe('Inn Form', () => {
   let page;
   let server = null;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = await childProcess.fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
       server.on('error', () => {
@@ -50,7 +50,7 @@ describe('Inn Form', () => {
 
     await page.waitFor('.popover');
   });
-  afterEach(async () => { // перенёс со строки 36
+  afterAll(async () => { // перенёс со строки 36
     await browser.close();
     server.kill();
   });

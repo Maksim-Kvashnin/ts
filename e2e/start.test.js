@@ -9,7 +9,7 @@ describe('Page start', () => {
   let page;
   let server = null;
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     server = await childProcess.fork(`${__dirname}/e2e.server.js`);
     await new Promise((resolve, reject) => {
       server.on('error', () => {
@@ -36,7 +36,7 @@ describe('Page start', () => {
     await page.waitFor('body');
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await browser.close();
     server.kill();
   });
