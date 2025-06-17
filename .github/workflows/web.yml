@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   eslint:
-    runs-on: ubuntu-2004
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
       - run: yarn lint
 
   test:
-    runs-on: ubuntu-2004
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -51,7 +51,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-2004
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
